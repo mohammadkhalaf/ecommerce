@@ -80,7 +80,7 @@ const products = [
     {
     _id: '7',
     name: 'mac laptop',
-    image: './images/macpro.jpg',
+    image: '/images/macpro.jpg',
     description:
      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
     brand: 'Amazon',
