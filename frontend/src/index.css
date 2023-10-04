@@ -14,5 +14,35 @@ code {
 
 .card {
   /* border: 2px solid red; */
-  height: 400px;
+
+}
+
+.product-title {
+  height: 2.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.star-rating {
+  display: inline-block;
+}
+
+.star {
+  font-size: 18px;
+  /* Adjust the size of the stars */
+  color: #FF9900;
+  /* Adjust the color to match Amazon's star color */
+}
+
+.full-star::before {
+  content: '\2605';
+}
+
+.half-star::before {
+  content: '\00BD';
+}
+
+.empty-star::before {
+  content: '\2606';
 }
