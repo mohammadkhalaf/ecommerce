@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Rating from "./Rating";
 
 const Product = ({product}) => {
-    console.log(product.image);
+
+
   return (
     <Card className="my-3 py-3 rounded  card">
        <Link to={`/product/${product._id}`}>
