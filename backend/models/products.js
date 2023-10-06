@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const reviewSchema= new mongoose.Schema({
+const reviewSchema=  mongoose.Schema({
       user:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
@@ -69,5 +69,5 @@ const productSchema= new mongoose.Schema({
 {
     timestamps:true
 })
-const Product=mongoose.model('Product', productSchema)
+const Product= mongoose.model('Product', productSchema)
 export default Product
