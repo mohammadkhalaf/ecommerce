@@ -17,12 +17,12 @@ const cartSlice= createSlice({
                 state.cartItems=[...state.cartItems,item]
             }
             //items price 
-            state.itemsPrice=addDecimals(state.cartItems.reduce((acc, item)=> acc+item.price*item.quantity,0))
+            state.itemsPrice=addDecimals( state.cartItems.reduce((acc, item)=> acc+item.price*item.quantity,0))
             //shipping
-            state.shippingPrice=addDecimals(state.itemsPrice>100?0:10)
+            state.shippingPrice=addDecimals( state.itemsPrice>100?0:10)
 
             // tax 15%
-            state.taxPrice=addDecimals(0.15*state.itemsPrice)
+            state.taxPrice=addDecimals(Number( 0.15*state.itemsPrice))
             //total
             state.totalPrice=(Number(state.itemsPrice)+Number(state.shippingPrice)+Number(state.taxPrice)).toFixed(2)
             localStorage.setItem('cart', JSON.stringify(state))          

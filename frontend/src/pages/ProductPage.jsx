@@ -16,7 +16,7 @@ const ProductPage = () => {
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const{data, error, isLoading}= useGetProductDetailsQuery(id)
-  const addToCartHandler=()=>{
+    const addToCartHandler=()=>{
     dispatch(addToCart({...data, quantity}))
     navigate('/cart')
   }
@@ -69,7 +69,7 @@ const ProductPage = () => {
                         <ListGroupItem>
                             <Row>
                                 <Col>Quantity</Col>
-                                <Col> <FormControl as='select' value={quantity} onChange={(e)=>setQuantity(e.target.value)}>
+                                <Col> <FormControl as='select' value={quantity} onChange={(e)=>setQuantity(Number (e.target.value))}>
                                     {[...Array(data.countInStock).keys()].map((x)=>(
                                         <option key={x+1} value={x+1}>{x+1}</option>
                                     ))}
