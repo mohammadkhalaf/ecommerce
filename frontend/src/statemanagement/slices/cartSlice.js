@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState=localStorage.getItem("cart")?JSON.parse(localStorage.getItem('cart')):{cartItems:[]}
+const initialState=localStorage.getItem("cart")?JSON.parse(localStorage.getItem('cart')):{cartItems:[], shippingAddress:{}, paymentMethod:''}
+console.log(initialState);
 const addDecimals=(v)=>{
     return  (Math.round(v*100)/100).toFixed(2)
 }
@@ -30,10 +31,19 @@ const cartSlice= createSlice({
         removeFromCart:(state,action)=>{
             state.cartItems=state.cartItems.filter((i)=>i._id!==action.payload)
             localStorage.setItem('cart', JSON.stringify(state))   
+        },
+        saveShippingAddress:(state, action)=>{
+           state.shippingAddress=action.payload
+           localStorage.setItem('cart', JSON.stringify(state))
+        },
+        savePaymentMethod:(state,action)=>{
+            state.paymentMethod=action.payload
+            localStorage.setItem('cart', JSON.stringify(state))
+
         }
     }
 
 })
-export const {addToCart,removeFromCart}=cartSlice.actions
+export const {addToCart,removeFromCart, saveShippingAddress,savePaymentMethod}=cartSlice.actions
 
 export default cartSlice.reducer
