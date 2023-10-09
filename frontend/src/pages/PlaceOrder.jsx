@@ -28,10 +28,11 @@ const PlaceOrder = () => {
       const response= await  createOrder({cartItems:cart.cartItems,
       shippingAddress:cart.shippingAddress,
       paymentMethod:cart.paymentMethod,itemsPrice:cart.itemsPrice,
-      shippingPrice:cart.shippingPrice,totalPrice:cart.totalPrice
+      shippingPrice:cart.shippingPrice,totalPrice:cart.totalPrice,taxPrice:cart.taxPrice
       }).unwrap()
-      dispatch(clearCartItems())
-      navigate(`/order/${response._id}`)
+      console.log(response._id);
+       dispatch(clearCartItems())
+       navigate(`/order/${response._id}`)
        
       
     } catch (error) {

@@ -3,6 +3,7 @@ import asyncHandler from "../middleware/asyncHandler.js"
 const createOrder=asyncHandler(async(req,res)=>{
     console.log(req.originalUrl);
     const {cartItems,shippingAddress,paymentAddress,itemsPrice,shippingPrice,totalPrice, taxPrice, paymentMethod }=req.body
+    console.log('tax price '+taxPrice);
     console.log(req.body);
     if(cartItems&&cartItems.length===0){
         res.status(400)
@@ -13,6 +14,7 @@ const createOrder=asyncHandler(async(req,res)=>{
             cartItems:cartItems.map((i)=>({name:i.name,quantity:i.quantity,image:i.image,price:i.price,product:i._id,_id:undefined })) , user:req.user._id,
             shippingAddress,paymentAddress,itemsPrice,taxPrice,shippingPrice, totalPrice, paymentMethod
         })
+        console.log(order);
 
         res.status(201).json(order)
     }
