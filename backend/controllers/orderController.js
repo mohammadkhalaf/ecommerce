@@ -23,6 +23,7 @@ const createOrder=asyncHandler(async(req,res)=>{
 
 })
 const getMyOrder=asyncHandler(async(req,res)=>{
+    console.log(req.body);
 const orders= await Order.find({user:req.user._id})
 if(orders){
     res.status(200).json(orders)
