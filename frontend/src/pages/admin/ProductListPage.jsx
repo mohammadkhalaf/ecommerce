@@ -1,0 +1,102 @@
+import { LinkContainer } from 'react-router-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import {
+  useGetProductsQuery,
+  useCreateProductMutation,
+} from '../../statemanagement/slices/productSlice';
+import { toast } from 'react-toastify';
+
+const ProductListPage = () => {
+  const { pageNumber } = useParams();
+
+  const { data, isLoading, error, refetch } = useGetProductsQuery({
+    pageNumber,
+  });
+  console.log(data);
+
+
+ 
+
+  const [createProduct, { isLoading: loadingCreate }] =
+    useCreateProductMutation();
+
+  const createProductHandler = async () => {
+    if (window.confirm('Are you sure you want to create a new product?')) {
+      try {
+        await createProduct();
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
+
+  return (
+    <>
+      <Row >
+        <Col>
+          <h1>Products</h1>
+        </Col>
+        <Col >
+          <Button   onClick={createProductHandler}>
+            <FaPlus /> Create Product
+          </Button>
+        </Col>
+      </Row>
+
+      {loadingCreate && <Loader />}
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error.data.message}</Message>
+      ) : (
+        <>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>BRAND</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+               { data.map((product) => (
+                <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>${product.price}</td>
+                  <td>{product.category}</td>
+                  <td>{product.brand}</td>
+                  <td>
+                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <Button variant='light'>
+                        <FaEdit />
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant='danger'
+                      className='btn-sm'
+    
+                    >
+                      <FaTrash style={{ color: 'white' }} />
+                    </Button>
+                  </td>
+                </tr>
+              ))} 
+            </tbody>
+          </Table>
+          {/* <Paginate pages={data.pages} page={data.page} isAdmin={true} /> */}
+        </>
+      )}
+    </>
+  );
+};
+
+export default ProductListPage;

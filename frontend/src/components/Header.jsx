@@ -64,6 +64,19 @@ try {
                    <Nav.Link ><FaUser/> Sign in</Nav.Link> 
                   </LinkContainer>
                   )}
+                  {userInfo && userInfo.isAdmin&& (
+                    <NavDropdown title='Admin' id='adminmenu'>
+                      <LinkContainer to='/admin/orderlist'>
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/productslist'>
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/userslist'>
+                        <NavDropdown.Item>Users List</NavDropdown.Item>
+                      </LinkContainer> 
+                    </NavDropdown>
+                  )}
                
                </Nav>
 
