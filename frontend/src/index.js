@@ -19,6 +19,8 @@ import ProfilePage from './pages/ProfilePage';
 import PrivateRoute from './components/PrivateRoute';
 import ProductListPage from './pages/admin/ProductListPage';
 import OrderListPage from './pages/admin/OrderListPage';
+import UserEditPage from './pages/admin/UserEditPage';
+import UsersList from './pages/admin/UsersList';
 import AdminRoute from './pages/admin/AdminRoute';
 import { store } from './statemanagement/store';
 import {Provider} from 'react-redux';
@@ -42,6 +44,8 @@ const router= createBrowserRouter(
         <Route path='/admin/orderlist' element={<OrderListPage/>}/>
         <Route path='/admin/productslist' element={<ProductListPage/>}/>
         <Route path='/admin/product/:id/edit' element={<ProductEditPage/>}/>
+         <Route path='/admin/userslist' element={<UsersList/>}/>
+         <Route path='/admin/user/:id/edit' element={<UserEditPage/>}/> 
 
       </Route>
     </Route>
