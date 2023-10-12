@@ -9,6 +9,7 @@ import {
   useCreateProductMutation,
   useDeleteProductMutation
 } from '../../statemanagement/slices/productSlice';
+import Paginate from '../../components/Paginate';
 import { toast } from 'react-toastify';
 
 const ProductListPage = () => {
@@ -81,7 +82,7 @@ const ProductListPage = () => {
               </tr>
             </thead>
             <tbody>
-               { data.map((product) => (
+               { data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -106,7 +107,8 @@ const ProductListPage = () => {
               ))} 
             </tbody>
           </Table>
-          {/* <Paginate pages={data.pages} page={data.page} isAdmin={true} /> */}
+          <Paginate pages={data.pages} page={data.page} isAdmin={true}/>
+     
         </>
       )}
     </>

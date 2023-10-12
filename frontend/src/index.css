@@ -46,3 +46,11 @@ code {
 .empty-star::before {
   content: '\2606';
 }
+
+.search {
+  display: flex;
+}
+
+.search-btn {
+  margin-left: 10px;
+}
