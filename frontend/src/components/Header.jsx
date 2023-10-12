@@ -33,10 +33,10 @@ try {
           <LinkContainer to='/'>
             <Navbar.Brand >Brand</Navbar.Brand>
           </LinkContainer>
-            <Navbar.Toggle aria-controls='basic-navbar-nav'/>
-            <NavbarCollapse id='basic-navbar-nav'>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <NavbarCollapse id='basic-navbar-nav' className='custom-navbar'>
                 <Nav className='ms-auto'>
-                  <Search/> 
+                  <Search /> 
                   <LinkContainer to='/cart'>
                      <Nav.Link><FaShoppingCart/> cart
                      {cartItems.length>0 && (

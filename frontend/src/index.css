@@ -12,10 +12,11 @@ code {
     monospace;
 }
 
-.card {
-  /* border: 2px solid red; */
-
+main {
+  min-height: 80vh;
 }
+
+
 
 .product-title {
   height: 2.5em;
@@ -47,10 +48,20 @@ code {
   content: '\2606';
 }
 
+
 .search {
   display: flex;
 }
 
 .search-btn {
   margin-left: 10px;
+}
+
+.custom-navbar {
+  /* Your existing styles for the Navbar */
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    /* Adjust the margin value as needed */
+  }
 }
