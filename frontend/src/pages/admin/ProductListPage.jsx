@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useDeleteProductMutation
 } from '../../statemanagement/slices/productSlice';
 import { toast } from 'react-toastify';
 
@@ -23,12 +24,24 @@ const ProductListPage = () => {
 
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
+    const [deleteProduct,{isLoading:loadingDelete}]=useDeleteProductMutation()
 
   const createProductHandler = async () => {
     if (window.confirm('Are you sure you want to create a new product?')) {
       try {
         await createProduct();
         refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
+  const deleteHandler = async (id) => {
+    if (window.confirm('Are you sure')) {
+      try {
+        await deleteProduct(id);
+        refetch();
+        toast.success('Product deleted');
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -49,6 +62,7 @@ const ProductListPage = () => {
       </Row>
 
       {loadingCreate && <Loader />}
+      {loadingDelete && <Loader/>}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -83,7 +97,7 @@ const ProductListPage = () => {
                     <Button
                       variant='danger'
                       className='btn-sm'
-    
+                      onClick={()=>deleteHandler(product._id)}
                     >
                       <FaTrash style={{ color: 'white' }} />
                     </Button>
