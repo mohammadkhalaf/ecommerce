@@ -11,8 +11,9 @@ import {
 } from '../../statemanagement/slices/productSlice';
 
 const ProductEditPage = () => {
-  const { id } = useParams();
+  const { id:_id } = useParams();
 
+   //const [_id,setId]=useState(id&&id)
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState('');
@@ -26,7 +27,7 @@ const ProductEditPage = () => {
     isLoading,
     refetch,
     error,
-  } = useGetProductDetailsQuery(id);
+  } = useGetProductDetailsQuery(_id);
   console.log(product);
 
   const [updateProduct, { isLoading: loadingUpdate }] =
@@ -37,7 +38,7 @@ const ProductEditPage = () => {
     e.preventDefault();
     try {
       await updateProduct({
-         id,
+        _id,
         name,
         price,
         image,
@@ -50,6 +51,7 @@ const ProductEditPage = () => {
       refetch();
       navigate('/admin/productslist');
     } catch (err) {
+      console.log(`this is err${err.error}`);
       toast.error(err?.data?.message || err.error);
     }
   };

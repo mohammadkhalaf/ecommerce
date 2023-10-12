@@ -1,7 +1,6 @@
 import Product from "../models/products.js";
 import asyncHandler from "../middleware/asyncHandler.js"
 const getAllProducts=asyncHandler(async(req,res)=>{
-      console.log(req.originalUrl);
       const products= await Product.find({})
      res.json(products)
 
@@ -33,6 +32,7 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 const updateProduct = asyncHandler(async (req, res) => {
+  console.log('asdfsdf');
   const { name, price, description, image, brand, category, countInStock } =
     req.body;
 
