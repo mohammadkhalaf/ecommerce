@@ -93,7 +93,7 @@ const [uploadProductImage,{isLoading:loadingUpload}]=useUploadProductImageMutati
         {isLoading ? (
           <Loader />
         ) : error ? (
-          <Message variant='danger'>{error.data.message}</Message>
+          <Message variant='danger'>{error.data.message||error.error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>

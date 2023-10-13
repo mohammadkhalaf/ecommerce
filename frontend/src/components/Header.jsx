@@ -7,6 +7,7 @@ import { useLogoutMutation } from '../statemanagement/slices/authApiSlice';
 import {logout} from '../statemanagement/slices/authSlice'
 import { useNavigate } from 'react-router-dom';
 import Search from './Search';
+import { resetCart } from '../statemanagement/slices/cartSlice';
 
 const Header = () => {
   const {cartItems}= useSelector((state)=>state.cart)
@@ -18,6 +19,7 @@ const logoutHandler=async()=>{
 try {
   await logoutApiCall().unwrap()
   dispatch(logout())
+  dispatch(resetCart())
   navigate('/login')
   
 } catch (error) {
