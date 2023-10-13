@@ -10,7 +10,6 @@ import CheckoutSteps from "../components/CheckoutSteps";
 
 const ShippingPage = () => {
     const cart= useSelector((state)=>state.cart)
-    console.log(cart, cart.cartItems);
     const [address,setAddress]=useState(cart.shippingAddress?.address||'')
     const [city,setCity]=useState(cart.shippingAddress?.city||'')
     const [postalCode,setPostalCode]=useState(cart.shippingAddress?.postalCode||'')

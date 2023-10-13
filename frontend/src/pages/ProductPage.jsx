@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import {Row, Col, Image, Card, Button, ListGroup, ListGroupItem, Form} from 'react-bootstrap'
+import {Row, Col, Image, Card, Button, ListGroup, Form} from 'react-bootstrap'
 import Rating from "../components/Rating";
 import  {useGetProductDetailsQuery, useCreateReviewMutation} from '../statemanagement/slices/productSlice'
 import Loader from "../components/Loader";
@@ -40,7 +40,6 @@ const ProductPage = () => {
       toast.error(err?.data?.message || err.error);
     }
   }
-  console.log(product);
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>

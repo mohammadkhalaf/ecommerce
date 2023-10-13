@@ -123,7 +123,6 @@ const updateUser=asyncHandler( async(req,res)=>{
   }
 })
 const deleteUser=asyncHandler( async(req,res)=>{
-  console.log('asdf');
     const user = await User.findById(req.params.id);
 
   if (user) {

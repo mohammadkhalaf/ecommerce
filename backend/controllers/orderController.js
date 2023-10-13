@@ -1,21 +1,18 @@
 import Order from "../models/order.js";
 import asyncHandler from "../middleware/asyncHandler.js"
 const createOrder=asyncHandler(async(req,res)=>{
-    console.log(req.originalUrl);
+
     const {cartItems,shippingAddress,paymentAddress,itemsPrice,shippingPrice,totalPrice, taxPrice, paymentMethod }=req.body
-    console.log('tax price '+taxPrice);
-    console.log(req.body);
+
     if(cartItems&&cartItems.length===0){
         res.status(400)
         throw new Error('No order items')
-    }else{
-        console.log('else');
+    }else{    
         const order= await Order.create({
             cartItems:cartItems.map((i)=>({name:i.name,quantity:i.quantity,image:i.image,price:i.price,product:i._id,_id:undefined })) , user:req.user._id,
             shippingAddress,paymentAddress,itemsPrice,taxPrice,shippingPrice, totalPrice, paymentMethod
         })
-        console.log(order);
-
+       
         res.status(201).json(order)
     }
 
@@ -23,7 +20,6 @@ const createOrder=asyncHandler(async(req,res)=>{
 
 })
 const getMyOrder=asyncHandler(async(req,res)=>{
-    console.log(req.body);
 const orders= await Order.find({user:req.user._id})
 if(orders){
     res.status(200).json(orders)

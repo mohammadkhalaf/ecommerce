@@ -18,11 +18,7 @@ const ProductListPage = () => {
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
   });
-  console.log(data);
-
-
  
-
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
     const [deleteProduct,{isLoading:loadingDelete}]=useDeleteProductMutation()

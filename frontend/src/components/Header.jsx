@@ -21,7 +21,6 @@ try {
   navigate('/login')
   
 } catch (error) {
-  console.log(error);
 }
 
 }

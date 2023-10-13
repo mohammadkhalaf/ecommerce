@@ -24,17 +24,13 @@ const PlaceOrder = () => {
   },[cart.paymentMethod,cart.shippingAddress,navigate])
   const placeOrderHandler=async()=>{
     try {
-
       const response= await  createOrder({cartItems:cart.cartItems,
       shippingAddress:cart.shippingAddress,
       paymentMethod:cart.paymentMethod,itemsPrice:cart.itemsPrice,
       shippingPrice:cart.shippingPrice,totalPrice:cart.totalPrice,taxPrice:cart.taxPrice
       }).unwrap()
-      console.log(response._id);
        dispatch(clearCartItems())
-       navigate(`/order/${response._id}`)
-       
-      
+       navigate(`/order/${response._id}`)       
     } catch (error) {
       toast.error(error)
     }

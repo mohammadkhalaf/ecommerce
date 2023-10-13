@@ -13,8 +13,6 @@ import {
 
 const ProductEditPage = () => {
   const { id:_id } = useParams();
-
-   //const [_id,setId]=useState(id&&id)
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState('');
@@ -29,7 +27,6 @@ const ProductEditPage = () => {
     refetch,
     error,
   } = useGetProductDetailsQuery(_id);
-  console.log(product);
 const [uploadProductImage,{isLoading:loadingUpload}]=useUploadProductImageMutation()
 
   const [updateProduct, { isLoading: loadingUpdate }] =
@@ -44,7 +41,6 @@ const [uploadProductImage,{isLoading:loadingUpload}]=useUploadProductImageMutati
       toast.success(response.message)
       setImage(response.image)
     } catch (error) {
-      console.log(error.data);
       toast.error(error?.data?.message||error.error)
       
     }
@@ -68,7 +64,6 @@ const [uploadProductImage,{isLoading:loadingUpload}]=useUploadProductImageMutati
       refetch();
       navigate('/admin/productslist');
     } catch (err) {
-      console.log(`this is err${err.error}`);
       toast.error(err?.data?.message || err.error);
     }
   };

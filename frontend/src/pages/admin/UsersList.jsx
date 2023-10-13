@@ -16,7 +16,6 @@ const UsersListPage = () => {
   const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (id) => {
-    console.log(id);
     if (window.confirm('Are you sure')) {
       try {
         await deleteUser(id);

@@ -30,6 +30,4 @@ app.use('/uploads',express.static(path.join(__dirname,'/uploads')))
 app.use(notFound)
 app.use(errorHandler)
 
-app.listen(port,()=>{
-console.log('sever is running'+ port);
-})
+app.listen(port)
